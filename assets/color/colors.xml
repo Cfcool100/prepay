@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- On n'arrive pas a avoir les preview (un apperçu ) des couleurs  -->
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
