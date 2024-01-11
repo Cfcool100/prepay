@@ -16,8 +16,8 @@ class MyColorName {
   /// Color: #000000
   static const Color black = Color(0xFF000000);
 
-  /// Color: #000000
-  static const Color blacks = Color(0xFF000000);
+  /// Color: #13688a
+  static const Color teal = Color(0xFF13688A);
 
   /// Color: #FFFFFF
   static const Color white = Color(0xFFFFFFFF);
