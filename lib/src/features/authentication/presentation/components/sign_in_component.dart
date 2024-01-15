@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:propay/gen/colors.gen.dart';
 import 'package:propay/src/core/core.dart';
+import 'package:propay/src/core/custom_widget_shared/title_auth.dart';
+import 'package:propay/src/features/authentication/bloc/signin/signin_bloc.dart';
+import 'package:propay/src/features/authentication/bloc/signin/signin_event.dart';
+import 'package:propay/src/features/authentication/bloc/signin/signin_state.dart';
+import 'package:propay/src/features/authentication/bloc/toggle_form_bloc.dart';
+
+typedef VoidCallback = void Function(bool value);
 
 class SignInComponent extends StatelessWidget {
-  const SignInComponent({super.key});
+  const SignInComponent({
+    super.key,
+  });
+
+  // final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Text(
-            'Sign In',
-            style: GoogleFonts.roboto(
-                fontWeight: FontWeight.bold, fontSize: 25.sp),
-          ),
+        const TitleAuthText(
+          title: 'Sign In',
         ),
         SizedBox(
           height: 50.h,
@@ -35,24 +43,31 @@ class SignInComponent extends StatelessWidget {
               SizedBox(
                 height: 5.h,
               ),
-              TextField(
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  isDense: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 1,
-                        color: Colors.grey.withOpacity(.5)), //<-- SEE HERE
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  contentPadding: EdgeInsets.all(12.h),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 1,
-                        color: Colors.grey.withOpacity(.5)), //<-- SEE HERE
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                ),
+              BlocBuilder<SignInBloc, FormSignState>(
+                builder: (context, state) {
+                  return TextField(
+                    keyboardType: TextInputType.phone,
+                    onChanged: (value) => context
+                        .read<SignInBloc>()
+                        .add(PhoneNumberChangedEvent(value)),
+                    decoration: InputDecoration(
+                      isDense: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.grey.withOpacity(.5)), //<-- SEE HERE
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      contentPadding: EdgeInsets.all(12.h),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.grey.withOpacity(.5)), //<-- SEE HERE
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                    ),
+                  );
+                },
               )
             ],
           ),
@@ -72,25 +87,32 @@ class SignInComponent extends StatelessWidget {
               SizedBox(
                 height: 5.h,
               ),
-              TextField(
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  suffixIcon: const Icon(Icons.remove_red_eye),
-                  isDense: true,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 1,
-                        color: Colors.grey.withOpacity(.5)), //<-- SEE HERE
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  contentPadding: EdgeInsets.all(12.h),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 1,
-                        color: Colors.grey.withOpacity(.5)), //<-- SEE HERE
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                ),
+              BlocBuilder<SignInBloc, FormSignState>(
+                builder: (context, state) {
+                  return TextField(
+                    keyboardType: TextInputType.phone,
+                    onChanged: (value) => context
+                        .read<SignInBloc>()
+                        .add(PasswordChangedEvent(value)),
+                    decoration: InputDecoration(
+                      suffixIcon: const Icon(Icons.remove_red_eye),
+                      isDense: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.grey.withOpacity(.5)), //<-- SEE HERE
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      contentPadding: EdgeInsets.all(12.h),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.grey.withOpacity(.5)), //<-- SEE HERE
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                    ),
+                  );
+                },
               )
             ],
           ),
@@ -105,39 +127,6 @@ class SignInComponent extends StatelessWidget {
               'resend Password',
               style: GoogleFonts.roboto(
                   fontWeight: FontWeight.bold, fontSize: 13.sp),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 20.h,
-        ),
-        RentCarButton(title: 'Sign In', onPressed: () {}),
-        SizedBox(
-          height: 10.h,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              children: [
-                Text(
-                  'Don\'t have an account ?',
-                  style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.w400, fontSize: 11.sp),
-                ),
-                TextButton(
-                    onPressed: () {
-                      // context.pop();
-                    },
-                    child: Text(
-                      'sign up',
-                      style: GoogleFonts.roboto(
-                          color: MyColorName.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.sp),
-                    ))
-              ],
             ),
           ],
         ),
