@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:propay/src/core/core.dart';
 import 'package:propay/src/features/authentication/presentation/pages/authentication_page.dart';
+import 'package:propay/src/features/basic/presentation/pages/basic_widget_page.dart';
+import 'package:propay/src/features/restaurant_app/presentation/pages/restaurant_home_page.dart';
 
 import 'src/features/authentication/presentation/pages/onboarding_page.dart';
 
@@ -16,7 +18,9 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: PageRoutes.home,
       builder: (BuildContext context, GoRouterState state) {
-        return const OnBoardingPage();
+        return const RestaurantHomePage();
+        // return const BasicWidgetPage();
+        // return const OnBoardingPage();
       },
       routes: <RouteBase>[
         GoRoute(

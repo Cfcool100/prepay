@@ -15,12 +15,22 @@ class $AssetsImagesGen {
   /// File path: assets/images/caraudi.jpg
   AssetGenImage get caraudi => const AssetGenImage('assets/images/caraudi.jpg');
 
+  /// File path: assets/images/fromage.jpg
+  AssetGenImage get fromage => const AssetGenImage('assets/images/fromage.jpg');
+
   /// File path: assets/images/mini-coupe-noir-route.jpg
   AssetGenImage get miniCoupeNoirRoute =>
       const AssetGenImage('assets/images/mini-coupe-noir-route.jpg');
 
+  /// File path: assets/images/pepsi.jpg
+  AssetGenImage get pepsi => const AssetGenImage('assets/images/pepsi.jpg');
+
+  /// File path: assets/images/pizza.jpg
+  AssetGenImage get pizza => const AssetGenImage('assets/images/pizza.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [caraudi, miniCoupeNoirRoute];
+  List<AssetGenImage> get values =>
+      [caraudi, fromage, miniCoupeNoirRoute, pepsi, pizza];
 }
 
 class MyAssets {
